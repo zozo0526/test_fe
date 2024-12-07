@@ -1,0 +1,14 @@
+networks:
+  gmr_fe_network:
+    driver: bridge
+services:
+  gmr_fe:
+    image: harbor.sltung.com.tw/medical_history/gmr_fe_staging:1.4.22
+    networks:
+    - gmr_fe_network
+    ports:
+    - 80:80
+    restart: always
+    volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+version: '3.8'
