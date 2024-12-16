@@ -1,13 +1,13 @@
 networks:
-  gmr_fe_network:
+  genlab_network:
     driver: bridge
 services:
-  gmr_fe:
-    image: harbor.sltung.com.tw/medical_history/gmr_fe_staging:1.4.22
+  genlab_fe:
+    image: gflai2/genlab_fe:1.0.0
     networks:
-    - gmr_fe_network
+    - genlab_network
     ports:
-    - 80:80
+    - 8080:80
     restart: always
     volumes:
     - ./nginx.conf:/etc/nginx/nginx.conf

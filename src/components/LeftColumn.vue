@@ -1,6 +1,6 @@
 <template>
-  <div id:left-column-root style="height:100%; box-sizing: border-box;">
-    <div class:titled-document-root style="height:90%; box-sizing: border-box;" v-if="hisData() && hisData().reference_documents">
+  <div id="left-column-root" style="height:100%; box-sizing: border-box;">
+    <div class="titled-document-root" style="height:90%; box-sizing: border-box;" v-if="hisData() && hisData().reference_documents">
       <TitledDocument v-for="(referenceDocument, index) in hisData().reference_documents" :key="index"
         v-show="selectedMenuItemIndex === index" :value="referenceDocument.text" @update:value="(value) => {
             referenceDocument.text = value;
@@ -8,7 +8,7 @@
           " @buttonClicked="handleButtonClicked(referenceDocument)"
         :shouldShowButton="getDocumentAction(referenceDocument) != ''" :titleText="referenceDocument.title"
         :textAreaPlaceholder="textAreaPlaceholder" :buttonText="getDocumentAction(referenceDocument)"
-        :isDisabled="referenceDocument.isDisabled" :isLoading="referenceDocument.isLoading" 
+        :isDisabled="referenceDocument.isDisabled" :isLoading="referenceDocument.isLoading"
         :readonly="referenceDocument.readonly"/>
     </div>
   </div>

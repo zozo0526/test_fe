@@ -81,7 +81,7 @@ export default {
   padding-left: 12px;
   height: 54px;
   align-items: center;
-  background-color: rgb(187, 246, 250);
+  background-color: lightgray;
 }
 
 .document-white {
@@ -114,8 +114,7 @@ export default {
 
 .document-json {
   z-index: 10;
-  margin: 0px;
-
+  margin: 0;
   padding: 12px;
   width: 100%;
   height: 100%;

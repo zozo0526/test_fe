@@ -1,0 +1,66 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+* {
+    font-family: "Helvetica", sans-serif;
+    font-size: 16px;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-blue {
+    background-color: blue;
+}
+
+.shadow {
+    box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 6px;
+}
+
+.left-column {
+    padding: 6px;
+    margin: 0;
+    height: 100vh;
+}
+
+.right-column {
+    padding: 6px;
+    margin: 0;
+    height: 100vh;
+}
+
+.main {
+    padding: 0;
+    margin: 0;
+}
+
+.aside {
+    padding-top: 6px;
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+    padding: 6px;
+    margin: 0;
+}
+
+el-dialog {
+    border-radius: 12px;
+}

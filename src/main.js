@@ -15,6 +15,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserLock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+import './assets/css/style.css'
 // Add the icons to the library, so you can use it in your Vue app
 library.add(faUserLock)
 

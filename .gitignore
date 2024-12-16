@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-/dist
+dist
 
 # ssl
 /ssl/*
@@ -23,4 +23,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-
+__pycache__
+yarn.lock
+*.log
+package-lock.json

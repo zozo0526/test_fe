@@ -63,7 +63,7 @@ http://localhost:8080/?his_data_id=4
 You may deploy with the deploy.py script, or manually deploy with the following steps.
 #### Deploy with deploy.py
 Because it uses python script to deploy, you need to activate the python virtual environment first.
-1. Activate the python virtual environment. It is recommended to use the env created by GMR backend project.
+1. Activate the python virtual environment. It is recommended to use the env created by GenLab backend project.
 ```bash
 conda activate <virtual_environment_name> 
 ```
@@ -71,14 +71,14 @@ conda activate <virtual_environment_name>
 ```bash
 python deploy.py
 ```
-3. The script will ask you to input the docker image version, the server user name, and password. And it will create the docker image, push it to the registry, and copy the docker-compose.yml and nginx.conf files to ~/service/gmr_fe/{version} on the server.
+3. The script will ask you to input the docker image version, the server user name, and password. And it will create the docker image, push it to the registry, and copy the docker-compose.yml and nginx.conf files to ~/service/genlab_fe/{version} on the server.
 4. Login to the server, cd into the folder, check if the file is correct, and run the docker-compose.yml file
 ```bash
-cd ~/service/gmr_fe/{version}
+cd ~/service/genlab_fe/{version}
 nano docker-compose.yml # check the docker-compose.yml content is correct
-cd ~/service/gmr_fe/{previous_version}
+cd ~/service/genlab_fe/{previous_version}
 docker-compose down
-cd ~/service/gmr_fe/{version}
+cd ~/service/genlab_fe/{version}
 docker-compose up -d
 ```
 #### Manually deploy
@@ -98,7 +98,7 @@ docker login <docker_registry_url>
 3. Push the docker image to the docker registry
 
 ```bash
-docker push <docker_registry_url>/gmr_fe:<version>
+docker push <docker_registry_url>/genlab_fe:<version>
 ```
 
 4. Copy the docker-compose.yml (or docker-compose-ssl.yml if using SSL) to the server

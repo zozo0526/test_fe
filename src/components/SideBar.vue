@@ -1,6 +1,7 @@
 <template>
   <div class="parent-container">
     <div class="child-top">
+      <h1>GenLab</h1>
       <el-menu class="el-menu-vertical no-right-border" @select="handleSelect">
         <div v-if="hisData() && hisData().reference_documents">
           <el-menu-item v-for="(item, i) in hisData().reference_documents" :key="i" :index="i.toString()">
@@ -15,7 +16,7 @@
     <div class="child-bottom">
       <el-popover
           :width="200"
-          popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
+          popper-style="box-shadow: rgb(14 18 22 / 35%) 0 10px 38px -10px, rgb(14 18 22 / 20%) 0 10px 20px -15px; padding: 20px;"
       >
         <template #reference>
           <div class="h-left">

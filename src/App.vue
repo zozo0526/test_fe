@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- a hidden div with id:"output" with value=generated_text 
+    <!-- a hidden div with id:"output" with value=generated_text
     to be retrieved by the outer web view component-->
     <div id="output" style="display: none; visibility: hidden">
       {{ hisData.output.value }}
@@ -177,70 +177,5 @@ export default {
 </script>
 
 <style>
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-}
 
-* {
-  font-family: "Helvetica", sans-serif;
-  font-size: 16px;
-}
-
-.bg-red {
-  background-color: red;
-}
-
-.bg-green {
-  background-color: green;
-}
-
-.bg-blue {
-  background-color: blue;
-}
-
-.shadow {
-  box-shadow: 1px 4px 8px 0px rgba(0, 0, 0, 0.2);
-}
-
-.title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 6px;
-}
-
-.left-column {
-  padding: 6px;
-  margin: 0px;
-  height: 100vh;
-}
-
-.right-column {
-  padding: 6px;
-  margin: 0px;
-  height: 100vh;
-}
-
-.main {
-  padding: 0px;
-  margin: 0px;
-}
-
-.aside {
-  padding-top: 6px;
-  margin: 0px;
-}
-
-.container {
-  height: 100%;
-  padding: 6px;
-  margin: 0px;
-}
-
-el-dialog {
-  border-radius: 12px;
-}
 </style>

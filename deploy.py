@@ -8,8 +8,14 @@ from scp import SCPClient
 from my_log import configure_logger, debug, info, error
 from env_config import load_env
 
+logger = configure_logger(__name__, 'deploy.log', level=info)
 
-docker_client = docker.from_env()
+try:
+    docker_client = docker.from_env()
+except Exception as e:
+    logger.error(e)
+    logger.error("Please check if the docker daemon is running.")
+    exit(1)
 
 
 def build_docker_image(image_name, tag, path, dockerfile):
@@ -30,7 +36,7 @@ def push_docker_image(image_name, tag):
     # join the logs to a string because the original logs are stream text a character by a character.
     push_logs = "".join([log for log in push_logs])
 
-    # detect error in the log, e.g. {"errorDetail":{"message":"unauthorized: unauthorized to access repository: medical_history/gmr_production, action: push: unauthorized to access repository: medical_history/gmr_production, action: push"},"error":"unauthorized: unauthorized to access repository: medical_history/gmr_production, action: push: unauthorized to access repository: medical_history/gmr_production, action: push"}
+    # detect error in the log, e.g. {"errorDetail":{"message":"unauthorized: unauthorized to access repository: medical_history/genlab_production, action: push: unauthorized to access repository: medical_history/genlab_production, action: push"},"error":"unauthorized: unauthorized to access repository: medical_history/genlab_production, action: push: unauthorized to access repository: medical_history/genlab_production, action: push"}
     if "error" in push_logs:
         logger.error(push_logs)
 
@@ -154,7 +160,7 @@ def ask_version(env_url) -> str:
 
 def deploy(service_name, version, staging_or_production, host_ip, registry, ssl_enabled):
     # Build and push Docker image
-    docker_image_name = f'{registry}/{service_name}_{staging_or_production}'
+    docker_image_name = f'{registry}/{service_name}' if staging_or_production == 'production' else f'{registry}/{service_name}_staging'
 
     if ssl_enabled == 'y':
         modify_docker_compose_file(docker_compose_file_url='docker-compose-ssl.yml',
@@ -173,7 +179,7 @@ def deploy(service_name, version, staging_or_production, host_ip, registry, ssl_
 
     build_docker_image(docker_image_name, version, ".", dockerfile_name)
 
-    push_docker_image(docker_image_name, version)
+    # push_docker_image(docker_image_name, version)
 
     # scp files to server
     destination_folder = f'~/service/{service_name}/{version}'
@@ -187,8 +193,7 @@ def deploy(service_name, version, staging_or_production, host_ip, registry, ssl_
         files.append(('./', 'docker-compose.yml', destination_folder, 'docker-compose.yml'))
         files.append(('./', 'nginx.conf', destination_folder, 'nginx.conf'))
 
-    copy_files_to_server(server_ip=host_ip, username=username, password=password,
-                         file_urls=files)
+    # copy_files_to_server(server_ip=host_ip, username=username, password=password, file_urls=files)
     logger.info("Finished!")
 
 
@@ -216,10 +221,10 @@ if __name__ == '__main__':
     username, password = ask_server_username_and_password()
     # ssl_enabled = ask_ssl()
     ssl_enabled = 'n'
-
+    image_name = f"{SERVICE_NAME}:{VERSION}" if staging_or_production == "production" else f"{SERVICE_NAME}_staging:{VERSION}"
     confirm_deploy = input(f"================================\n"
                            f"Registry: {REGISTRY}\n"
-                           f"{SERVICE_NAME}_{staging_or_production}:{VERSION}\n"
+                           f"{image_name}\n"
                            f"Env file: {env_file_url}\n"
                            f"Server: {username}@{HOST_IP}\n"
                            f"With SSL: {ssl_enabled}\n"

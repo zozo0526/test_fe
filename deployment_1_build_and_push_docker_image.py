@@ -19,7 +19,7 @@ def push_docker_image(image_name, tag):
     # join the logs to a string
     push_logs = "".join([log for log in push_logs])
 
-    # detect error in the log, e.g. {"errorDetail":{"message":"unauthorized: unauthorized to access repository: medical_history/gmr_production, action: push: unauthorized to access repository: medical_history/gmr_production, action: push"},"error":"unauthorized: unauthorized to access repository: medical_history/gmr_production, action: push: unauthorized to access repository: medical_history/gmr_production, action: push"}
+    # detect error in the log, e.g. {"errorDetail":{"message":"unauthorized: unauthorized to access repository: medical_history/genlab_production, action: push: unauthorized to access repository: medical_history/genlab_production, action: push"},"error":"unauthorized: unauthorized to access repository: medical_history/genlab_production, action: push: unauthorized to access repository: medical_history/genlab_production, action: push"}
     if "error" in push_logs:
         print(push_logs)
 
